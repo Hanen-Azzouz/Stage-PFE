@@ -10,14 +10,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
 
 
     @Autowired
     private IUserService userRest;
-
 
     @PostMapping("/addUser")
     @PreAuthorize("hasAuthority('ADMIN')")
@@ -26,7 +25,7 @@ public class UserController {
         return userRest.addUserAndAffectToRole(user);
     }
 
-    @PutMapping("/updateUser")
+    @PutMapping("/updateUser/")
     @PreAuthorize("hasAuthority('ADMIN')")
     User updateUser(@RequestBody User user){
         return userRest.updateUser(user);

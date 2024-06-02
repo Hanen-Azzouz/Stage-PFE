@@ -12,6 +12,8 @@ import tn.esprit.gestionhospitalierebackend.DAO.repositories.TokenRepository;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 @Service
@@ -86,14 +88,16 @@ public class JWTService {
 
     }
     private String generateToken(User user,long expiredTime){
-        String token= Jwts
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", user.getRole().getRoleName());
+        return Jwts
                 .builder()
                 .subject(user.getUsername())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis()+expiredTime))
+                .claims(claims)
                 .signWith(getSigningKey())
                 .compact();
-        return token;
 
     }
 

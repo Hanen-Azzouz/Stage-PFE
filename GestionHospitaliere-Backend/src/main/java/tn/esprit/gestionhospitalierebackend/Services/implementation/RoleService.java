@@ -43,4 +43,9 @@ public class RoleService implements IRoleService {
     public Role findRoleById(Integer id) {
         return roleRepo.findById(id).get();
     }
+
+    @Override
+    public Role getRoleByName(String rolename) {
+        return roleRepo.getByRoleName(rolename);
+    }
 }

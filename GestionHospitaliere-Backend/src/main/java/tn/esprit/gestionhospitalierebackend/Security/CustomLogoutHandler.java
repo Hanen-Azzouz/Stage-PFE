@@ -5,10 +5,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import tn.esprit.gestionhospitalierebackend.DAO.entities.Token;
 import tn.esprit.gestionhospitalierebackend.DAO.repositories.TokenRepository;
 
-@Component
+//@Component
+@Service
 public class CustomLogoutHandler implements LogoutHandler {
 
     private final TokenRepository tokenRepo;

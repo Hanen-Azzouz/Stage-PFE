@@ -9,14 +9,24 @@ import tn.esprit.gestionhospitalierebackend.Services.interfaces.IRoleService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/role")
 @CrossOrigin(origins = "*")
+@RequestMapping("/role")
+
 public class RoleController {
 
     @Autowired
     private IRoleService roleRest;
+
+
+
+    @GetMapping("/getRoleByName/{rolename}")
+    Role getRoleByName(@PathVariable String rolename){
+        return roleRest.getRoleByName(rolename);
+
+
+    }
     @PostMapping("/addRole")
-    @PreAuthorize("hasAuthority('ADMIN')")
+   // @PreAuthorize("hasAuthority('ADMIN')")
     Role addRole(@RequestBody Role role){
         return roleRest.addRole(role);
     }
@@ -36,7 +46,7 @@ public class RoleController {
     void deleteRole(@RequestBody Role role){
 
     }
-    @GetMapping("/getRoleById{id}")
+    @GetMapping("/getRoleById/{id}")
     //@PreAuthorize("hasAuthority('ADMIN')")
     Role getRoleById(@PathVariable Integer id){
         return roleRest.findRoleById(id);
@@ -48,4 +58,9 @@ public class RoleController {
     List<Role> getAllRoles(){
         return roleRest.findAllRoles();
     }
+
+
+
+
+
 }

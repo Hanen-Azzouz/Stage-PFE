@@ -9,10 +9,13 @@ public class AuthenticationResponse {
     @JsonProperty("refresh_token")
     private String refreshToken;
     String message;
+
+
     public AuthenticationResponse(String accessToken, String refreshToken, String message) {
         this.accessToken = accessToken;
         this.refreshToken = refreshToken;
         this.message = message;
+
     }
 
     public String getMessage() {

@@ -6,5 +6,7 @@ import tn.esprit.gestionhospitalierebackend.DAO.entities.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role,Integer> {
+
+    Role getByRoleName(String rolename);
 }
 

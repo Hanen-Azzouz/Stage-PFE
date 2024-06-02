@@ -30,7 +30,9 @@ public class User implements UserDetails {
     String password;
     int phoneNumber;
     String email;
+    @Temporal(TemporalType.DATE)
     Date dateNaissance;
+    @Temporal(TemporalType.DATE)
     Date dateInscription;
 
 
@@ -57,6 +59,7 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         //return List.of(new SimpleGrantedAuthority(role.name()));
+       // return new SimpleGrantedAuthority(role.getRoleName());
         return List.of(new SimpleGrantedAuthority(role.getRoleName()));
     }
 

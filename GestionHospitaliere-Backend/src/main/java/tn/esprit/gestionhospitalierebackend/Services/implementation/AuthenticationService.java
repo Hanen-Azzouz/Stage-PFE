@@ -12,8 +12,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import tn.esprit.gestionhospitalierebackend.DAO.entities.AuthenticationResponse;
+import tn.esprit.gestionhospitalierebackend.DAO.entities.Role;
 import tn.esprit.gestionhospitalierebackend.DAO.entities.Token;
 import tn.esprit.gestionhospitalierebackend.DAO.entities.User;
+import tn.esprit.gestionhospitalierebackend.DAO.repositories.RoleRepository;
 import tn.esprit.gestionhospitalierebackend.DAO.repositories.TokenRepository;
 import tn.esprit.gestionhospitalierebackend.DAO.repositories.UserRepository;
 
@@ -23,6 +25,7 @@ import java.util.List;
 public class AuthenticationService {
 
     private final UserRepository userRepo;
+   // private final RoleRepository roleRepo;
     private final TokenRepository tokenRepo;
 
     private final PasswordEncoder passwordEncoder;
@@ -30,6 +33,8 @@ public class AuthenticationService {
     private final JWTService jwtService;
 
     private final AuthenticationManager authenticationManager;
+
+
 
     public AuthenticationService(UserRepository userRepo,
                                  TokenRepository tokenRepo,
@@ -57,8 +62,9 @@ public class AuthenticationService {
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setPhoneNumber(request.getPhoneNumber());
+        user.setDateNaissance(request.getDateNaissance());
+        user.setDateInscription(request.getDateInscription());
 
-       // user.setRole(request.getRole());
         user.setRole(request.getRole());
 
         user=userRepo.save(user);
@@ -83,14 +89,31 @@ public class AuthenticationService {
                     request.getPassword()
             )
     );
+        System.out.println("username sent is ok"+request.getUsername());
     User user=userRepo.findByUsername(request.getUsername()).orElseThrow();
+    System.out.println("user ok"+user.getUsername());
+
         String accessToken= jwtService.generateAccessToken(user);
         String refreshToken= jwtService.generateRefreshToken(user);
 
         revokeAllTokensByUser(user);
+        deleteLoggedTokens();
 
         saveUserToken(accessToken,refreshToken,user);
         return new AuthenticationResponse(accessToken,refreshToken,"User login was successful");
+    }
+
+    private void deleteLoggedTokens() {
+        List<Token> loggedOutTokens= tokenRepo.findAllLoggedAccessTokenByUser();
+        if(loggedOutTokens.isEmpty()){
+            System.out.println(" tokens logged out List is empty");
+        }
+
+        loggedOutTokens.forEach(t->{
+            tokenRepo.delete(t);
+            // t.setLoggedOut(true);
+        });
+        System.out.println(" tokens logged out deleted ok");
     }
 
     private void revokeAllTokensByUser(User user) {
@@ -102,7 +125,6 @@ public class AuthenticationService {
             validTokens.forEach(t->{
                 t.setLoggedOut(true);
             });
-
 
 
         tokenRepo.saveAll(validTokens);

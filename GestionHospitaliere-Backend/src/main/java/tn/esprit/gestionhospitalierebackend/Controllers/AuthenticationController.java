@@ -3,34 +3,41 @@ package tn.esprit.gestionhospitalierebackend.Controllers;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 import tn.esprit.gestionhospitalierebackend.DAO.entities.AuthenticationResponse;
 import tn.esprit.gestionhospitalierebackend.DAO.entities.User;
+import tn.esprit.gestionhospitalierebackend.Security.CustomLogoutHandler;
 import tn.esprit.gestionhospitalierebackend.Services.implementation.AuthenticationService;
 
 
 @RestController
-//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RequestMapping("/auth")
 public class AuthenticationController {
 
     private final AuthenticationService authService;
+    private final CustomLogoutHandler logoutHandler;
 
-
-
-    public AuthenticationController(AuthenticationService authService) {
+    public AuthenticationController(AuthenticationService authService,
+                                    CustomLogoutHandler logoutHandler) {
         this.authService = authService;
+        this.logoutHandler = logoutHandler;
     }
+
+
+
+    /*public AuthenticationController(AuthenticationService authService) {
+        this.authService = authService;
+    }*/
 
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody User request){
-        return ResponseEntity.ok(authService.register(request));
+        return ResponseEntity.ok(authService.register(request));}
 
-    }
+
+
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody User request){
         return ResponseEntity.ok(authService.authenticate(request));
@@ -43,7 +50,14 @@ public class AuthenticationController {
             HttpServletResponse response){
         return authService.refreshToken(request,response);
     }
+    @PostMapping("/logout")
+    public void logout(HttpServletRequest request,
+                  HttpServletResponse response,
+                  Authentication authentication){
+        logoutHandler.logout(request,response,authentication);
+        System.out.println("logged out success");
 
+    }
 
 
 

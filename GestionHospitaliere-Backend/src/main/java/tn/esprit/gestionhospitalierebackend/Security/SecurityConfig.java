@@ -15,8 +15,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import tn.esprit.gestionhospitalierebackend.Services.implementation.UserDetailsServiceImpl;
 import tn.esprit.gestionhospitalierebackend.filter.JwtAuthenticationFilter;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -45,11 +51,11 @@ public class SecurityConfig {
              public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 //
                     return http
+                            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                            .csrf(AbstractHttpConfigurer::disable)
                            .authorizeHttpRequests(
-                                   req->req.requestMatchers("auth/login/**","auth/register/**","auth/refresh_token/**")
+                                   req->req.requestMatchers("auth/login/**","auth/register/**","auth/refresh_token/**","role/getRoleById/**")
                                   .permitAll()
-                                  //.requestMatchers("/v3/api-docs/**", "/swagger-ui/**").permitAll()
                                   .anyRequest().authenticated())
                                   .userDetailsService(userDetailsServiceImp)
                                    .exceptionHandling(e->e.accessDeniedHandler(accessDeniedHandler)
@@ -57,7 +63,7 @@ public class SecurityConfig {
                                   //.authenticationProvider(authenticationProvider())
                                   .sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                                  .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                            .logout(l->l.logoutUrl("/logout")
+                                 .logout(l->l.logoutUrl("/hospital/auth/logout")
                                     .addLogoutHandler(logoutHandler)
                                     .logoutSuccessHandler(
                                             ((request, response, authentication) -> SecurityContextHolder.clearContext()
@@ -89,7 +95,7 @@ public class SecurityConfig {
 
 
         //pour débloquer cors auprés de spring security
-        /*@Bean
+        @Bean
         CorsConfigurationSource corsConfigurationSource(){
          CorsConfiguration corsConfiguration=new CorsConfiguration();
          corsConfiguration.addAllowedOrigin("*");
@@ -99,8 +105,19 @@ public class SecurityConfig {
          UrlBasedCorsConfigurationSource source=new UrlBasedCorsConfigurationSource();
          source.registerCorsConfiguration("/**",corsConfiguration);
             return source;
-        }*/
+        }
 
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedOrigin("http://localhost:4200");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
 
 
 

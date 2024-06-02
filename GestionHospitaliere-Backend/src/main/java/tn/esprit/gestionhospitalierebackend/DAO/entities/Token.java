@@ -1,5 +1,6 @@
 package tn.esprit.gestionhospitalierebackend.DAO.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -14,6 +15,7 @@ public class Token {
      String refreshToken;
      boolean loggedOut;
      @ManyToOne
+     @JsonIgnore
      @JoinColumn(name = "id_user")
      User user;
 

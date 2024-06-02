@@ -32,6 +32,9 @@ public class UserService implements IUserService {
 
     @Override
     public User updateUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+
         return userRepo.save(user);
     }
 
@@ -53,6 +56,11 @@ public class UserService implements IUserService {
 
     @Override
     public User findUserById(Integer id) {
+
         return userRepo.findById(id).get();
     }
+
+
+
+
 }

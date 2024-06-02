@@ -7,6 +7,6 @@ public enum TypeRole {
     CAISSIER,
     ADMISSION,
     FACTURATION,
-   HONORAIRE,
+    HONORAIRE,
 
 }
