@@ -1,0 +1,121 @@
+
+
+<main style="margin-top:auto;">
+
+   <table class="table">
+  <thead >
+    <tr>
+     <!-- <th scope="col">id User</th>style="color: firebrick;"-->
+      <th scope="col"class="custom-th" >Prénom</th>
+      <th scope="col"class="custom-th">Nom</th>
+      <th scope="col"class="custom-th">Nom utilisateur</th>
+      <!--<th scope="col">password</th>-->
+      <th scope="col"class="custom-th">Téléphone</th>
+      <th scope="col"class="custom-th">Email</th>
+      <!--<th scope="col">Date Naissance</th>
+      <th scope="col">Date Inscription</th>-->
+      <th scope="col"class="custom-th">Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor=" let i of usersList | paginate: { itemsPerPage: 3, currentPage: p}; let j = index">
+        <!---- <tr *ngFor=" let i of list">-->
+        <tr>
+         <!---<td>{{i.idUser}}</td>-->
+          <td>{{i.firstName}}</td>
+          <td> {{i.lastName}}</td>
+           <td>{{i.username}}</td>
+          <!--<td>{{i.password}}</td>-->
+          <td>{{i.phoneNumber}}</td>
+          <td>{{i.email}}</td>
+          <!--<td>{{i.dateNaissance}}</td>  
+          <td>{{i.dateInscription}}</td>-->
+          <td >{{i.role.roleName}}</td>
+          <td>
+            <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#userModal"
+              (click)="afficherOneUser(i.idUser)">
+              Détail
+            </button></td>
+  
+           <td><button type="button" class="btn btn-outline-primary" (click)="update(i.idUser)">update</button></td>   
+          <!--  <td><button type="button" class="btn btn-outline-danger" (click)="delete(i.idUser)">Delete</button>
+          </td>-->
+
+        </tr>
+      </ng-container>
+  </tbody>
+</table>
+<div class="pagination">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+
+    <!-- Modal Détail-->
+  <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Détail User</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <!-- main content modal -->
+          <table class="table align-items-center table-flush ">
+            <thead class="thead-light">
+              <tr>
+               <!--   <th scope="col">id User</th>-->
+                  <th scope="col"class="custom-th">Prénom</th>
+                  <th scope="col"class="custom-th">Nom</th>
+                  <th scope="col"class="custom-th">Nom utilisateur</th>
+                  <!--<th scope="col">password</th>-->
+                  <th scope="col"class="custom-th">Téléphone</th>
+                  <th scope="col"class="custom-th">Email</th>
+                  <!--<th scope="col">Date Naissance</th>
+                  <th scope="col">Date Inscription</th>
+                  <th scope="col">Role</th>-->
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+
+             <!--   <td>{{user.idUser}}</td>-->
+                <td>{{user.firstName}}</td>
+                <td> {{user.lastName}}</td>
+                 <td>{{user.username}}</td>
+             <!-- <td>{{i.password}}</td>-->
+               <td>{{user.phoneNumber}}</td>
+                <td>{{user.email}}</td>
+               <!--  <td>{{user.dateNaissance}}</td>  
+                <td>{{user.dateInscription}}</td>
+                <td >{{user.role.roleName}}</td>-->
+               
+                
+
+              </tr>
+            </tbody>
+          </table>
+
+
+          <!-- fin main content Modal -->
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal"(click)="closeModal()">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--fin modal one contrat-->
+   <!--contenu-->
+
+
+
+
+
+
+<!--content area-->
+</main>

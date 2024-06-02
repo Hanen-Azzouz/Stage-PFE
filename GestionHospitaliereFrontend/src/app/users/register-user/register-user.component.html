@@ -1,0 +1,153 @@
+<main style="margin-top: 58px;">
+
+
+    <div class="col-xl-10 margin-top">
+      <div class="card shadow">
+             <div class="card-header bg-transparent">
+                    <div class="row align-items-center">
+                      <div class="col">
+                               <h6 class="text-uppercase text-muted ls-1 mb-1">Add New User </h6>
+                               
+                         </div>                  
+                    </div>                 
+             </div>
+              <div class="card-body margin-top">
+                     <!-- Chart -->
+                    <!-- <div class="chart">
+                        <canvas id="chart-orders" class="chart-canvas"></canvas>
+                      </div>-->
+  
+  
+  
+                      <div class="container pt-4">
+                          
+  
+                        <form #f1="ngForm" >  
+                          
+                                                   
+      
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label class="col-sm-4 control-label"><b> First Name</b></label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" name="firstname" #fn="ngModel" required [(ngModel)]="user.firstName" >
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="col-sm-4 control-label"><b> Last Name</b></label>
+                              <div class="col-sm-6">
+                                <input type="text" class="form-control" name="lastname" #ln="ngModel" required [(ngModel)]="user.lastName" >
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="col-sm-4 control-label"><b> username</b></label>
+                              <div class="col-sm-6">
+                                <input type="text" class="form-control" name="username" #us="ngModel" required [(ngModel)]="user.username" >
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="col-sm-4 control-label"><b> Password</b></label>
+                              <div class="col-sm-6">
+                                <input type="password" class="form-control" name="password" #pwd="ngModel" required [(ngModel)]="user.password" >
+                              </div>
+                            </div>
+                          </div>
+
+                          
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="col-sm-4 control-label"><b> Phone Number</b></label>
+                              <div class="col-sm-6">
+                                <input type="number" class="form-control" name="phone" #pn="ngModel" required [(ngModel)]="user.phoneNumber" >
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="col-sm-4 control-label"><b> Email</b></label>
+                              <div class="col-sm-6">
+                                <input type="email" class="form-control" name="email" #eml="ngModel" required [(ngModel)]="user.email" placeholder="your email">
+                              </div>
+                            </div>
+                          </div>
+                         
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="col-sm-12 control-label"><b> Date Naissance</b></label>
+                              <div class="col-sm-10">
+                                <input type="date" class="date-start ml-5 form-control datepicker" name="dateNaissance" #dn="ngModel" required [(ngModel)]="user.dateNaissance" placeholder="Date Naissance">
+                              </div>
+                            </div>
+                          </div>
+
+                          
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="col-sm-12 control-label"><b> Date Inscription</b></label>
+                              <div class="col-sm-10">
+                                <input type="date" class="date-start ml-5 form-control datepicker" name="dateInscription" #di="ngModel" required [(ngModel)]="user.dateInscription" placeholder="Date Inscription">
+                              </div>
+                            </div>
+                          </div>
+                        
+                             
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="control-label col-sm-12"><b>Role</b></label>
+                              <div class="col-sm-8">
+                                <select class="form-select"  #rl="ngModel" required [(ngModel)]="roleAffecte" name="role" (change)="getRole()" >                            
+                                  <option selected value="1">ADMIN</option>
+                                  <option value="2">Medecin</option>
+                                  <option value="3">Infirmier</option>
+                                  <option value="4">CAISSIER</option>
+                                  <option value="5">ADMISSION</option>
+                                  <option value="6">FACTURATION</option>
+                                  <option value="7">HONORAIRE</option>
+                                  
+                                </select>
+                                <!--<input type="text" class="form-control">-->
+                              </div>
+                            </div>
+                          </div>          
+                        
+                          
+
+
+                        
+                                                
+                                                        
+                        
+                                                
+                          <div class="text-center">
+                            <input type="submit" class="btn btn-info"value="Valider"(click)="addUser(f1.value)">
+                             </div>
+
+
+
+
+                            <!--<button class="btn btn-primary waves-effect waves-light " id="btn-submit" (click)="ajouter(f1.value)">Ajouter</button>-->
+                          </form>
+                        
+                        
+                        </div>
+                          </div>
+                         </div>
+                         </div>
+                         </main> 
+                        
+                        
+                          
+                        
+                          <!--<input type="hidden" name="action" id="action" value="event_dialog_add_newpartnerdata" />-->
+  
+  
+  
