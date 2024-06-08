@@ -1,5 +1,10 @@
 package tn.esprit.gestionhospitalierebackend.DAO.enums;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+
 public enum TypeRole {
     ADMIN,
     MEDECIN,
@@ -7,6 +12,12 @@ public enum TypeRole {
     CAISSIER,
     ADMISSION,
     FACTURATION,
-    HONORAIRE,
+    HONORAIRE
+        ;
 
-}
+
+
+
+
+
+    }

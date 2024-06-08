@@ -1,5 +1,6 @@
 package tn.esprit.gestionhospitalierebackend.DAO.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -30,15 +31,16 @@ public class User implements UserDetails {
     String password;
     int phoneNumber;
     String email;
+
     @Temporal(TemporalType.DATE)
     Date dateNaissance;
     @Temporal(TemporalType.DATE)
     Date dateInscription;
-
+    boolean accountNonLocked;
 
     @ManyToOne
     private Role role;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     List<Token> tokens;
 
     public List<Token> getTokens() {
@@ -48,12 +50,6 @@ public class User implements UserDetails {
     public void setTokens(List<Token> tokens) {
         this.tokens = tokens;
     }
-
-    //@JsonIgnore
-
-
-    //@Enumerated(value = EnumType.STRING)
-    //private TypeRole role;
 
 
     @Override
@@ -70,7 +66,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return accountNonLocked;
     }
 
     @Override

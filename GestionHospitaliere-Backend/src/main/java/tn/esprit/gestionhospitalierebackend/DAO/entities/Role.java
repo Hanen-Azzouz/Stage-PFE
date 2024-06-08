@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import tn.esprit.gestionhospitalierebackend.DAO.enums.TypeRole;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
@@ -29,5 +30,28 @@ public class Role {
         return roleName.name();
     }
 
+    public Role(Integer idRole, TypeRole roleName) {
+    }
 
+    public Integer getIdRole() {
+        return idRole;
+    }
+
+    public void setIdRole(Integer idRole) {
+        this.idRole = idRole;
+    }
+
+    public void setRoleName(TypeRole roleName) {
+        this.roleName = roleName;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 }
+
+

@@ -1,12 +1,18 @@
 package tn.esprit.gestionhospitalierebackend.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.gestionhospitalierebackend.DAO.entities.User;
 import tn.esprit.gestionhospitalierebackend.Services.interfaces.IUserService;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -18,17 +24,17 @@ public class UserController {
     @Autowired
     private IUserService userRest;
 
-    @PostMapping("/addUser")
+    @PostMapping(value = "/addUser",consumes = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('ADMIN')")
     User addUser(@RequestBody User user){
 
         return userRest.addUserAndAffectToRole(user);
     }
 
-    @PutMapping("/updateUser/")
+    @PutMapping(value ="/updateUser/{idUser}",consumes = MediaType.APPLICATION_JSON_VALUE)
     @PreAuthorize("hasAuthority('ADMIN')")
-    User updateUser(@RequestBody User user){
-        return userRest.updateUser(user);
+    User updateUser(@PathVariable Integer idUser,@RequestBody User user){
+        return userRest.updateUser(idUser,user);
     }
 
     @GetMapping("/getUserById/{id}")
@@ -45,8 +51,11 @@ public class UserController {
 
     @DeleteMapping("/deleteUserById/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    void deleteUserById(@PathVariable Integer id){
+    ResponseEntity<Map<String,String>> deleteUserById(@PathVariable Integer id){
         userRest.deleteUserById(id);
+        Map<String,String> response=new HashMap<>();
+        response.put("message","User account deleted successfully");
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/deleteUser")
@@ -55,5 +64,40 @@ public class UserController {
         userRest.deleteUser(user);
     }
 
+    @PutMapping("/lockUserAccount")
+    @PreAuthorize("hasAuthority('ADMIN')")
+     ResponseEntity<Map<String,String>> lockUserAccount(@RequestBody String username){
+        userRest.lockUserAccount(username);
+        Map<String,String> response=new HashMap<>();
+        response.put("message","User account locked successfully");
+        return ResponseEntity.ok(response);
+    }
+
+
+    @PutMapping("/unlockUserAccount")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    ResponseEntity<Map<String,String>> unlockUserAccount(@RequestBody String username){
+        userRest.unlockUserAccount(username);
+        Map<String,String> response=new HashMap<>();
+        response.put("message","User account unlocked successfully");
+        return ResponseEntity.ok(response);
+    }
+    @GetMapping("/getActifUsers/{status}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public List<User> searchActifUsers(@PathVariable boolean status) {
+        return userRest.searchActifUsers(status);
+    }
+    @GetMapping("/getUserByUsername/{username}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public User searchUserByUsername(@PathVariable String username) {
+        return userRest.searchUserByUsername(username) ;
+    }
+
+    @GetMapping("/getUserByDateInscriptionBetween/{date1}/{date2}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+   public List<User> getUserByDateInscriptionBetween(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date1, @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date2){
+
+        return userRest.getUserByDateInscriptionBetween(date1,date2);
+   }
 
 }

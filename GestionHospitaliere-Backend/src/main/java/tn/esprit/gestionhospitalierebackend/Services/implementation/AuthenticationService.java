@@ -61,10 +61,12 @@ public class AuthenticationService {
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+
+
         user.setPhoneNumber(request.getPhoneNumber());
         user.setDateNaissance(request.getDateNaissance());
         user.setDateInscription(request.getDateInscription());
-
+        user.setAccountNonLocked(true);
         user.setRole(request.getRole());
 
         user=userRepo.save(user);
@@ -82,26 +84,30 @@ public class AuthenticationService {
 
 
 
-    public AuthenticationResponse authenticate(User request){
-    authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(
-                    request.getUsername(),
-                    request.getPassword()
-            )
-    );
-        System.out.println("username sent is ok"+request.getUsername());
-    User user=userRepo.findByUsername(request.getUsername()).orElseThrow();
-    System.out.println("user ok"+user.getUsername());
+    public AuthenticationResponse authenticate(User request) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getUsername(),
+                        request.getPassword()
+                )
+        );
 
-        String accessToken= jwtService.generateAccessToken(user);
-        String refreshToken= jwtService.generateRefreshToken(user);
 
-        revokeAllTokensByUser(user);
-        deleteLoggedTokens();
+        System.out.println("username sent is ok" + request.getUsername());
+        User user = userRepo.findByUsername(request.getUsername()).orElseThrow();
+            System.out.println("user ok" + user.getUsername());
 
-        saveUserToken(accessToken,refreshToken,user);
-        return new AuthenticationResponse(accessToken,refreshToken,"User login was successful");
-    }
+            String accessToken = jwtService.generateAccessToken(user);
+            String refreshToken = jwtService.generateRefreshToken(user);
+
+            revokeAllTokensByUser(user);
+            deleteLoggedTokens();
+
+            saveUserToken(accessToken, refreshToken, user);
+            return new AuthenticationResponse(accessToken, refreshToken, "User login was successful");
+        }
+
+
 
     private void deleteLoggedTokens() {
         List<Token> loggedOutTokens= tokenRepo.findAllLoggedAccessTokenByUser();
