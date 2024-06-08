@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -6,6 +6,14 @@ import { Component } from '@angular/core';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
+  isCollapsedusers=true;
+  isCollapsedmedecins=true;
+  constructor(){
 
+  }
+  ngOnInit(): void {
+    
+   
+  }
 }

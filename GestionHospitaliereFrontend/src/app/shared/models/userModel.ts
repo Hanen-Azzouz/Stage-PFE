@@ -12,6 +12,7 @@ export class UserModel {
     email!:string
     dateNaissance!:Date
     dateInscription!:Date
+    accountNonLocked!:boolean
     role!:RoleModel
     tokens!:TokenModel[]
 

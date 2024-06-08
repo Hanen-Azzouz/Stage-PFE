@@ -45,6 +45,14 @@ export class AuthenticationService {
 
    decryptPassword(encryptedPassword:string, secretKey:string) {
     const bytes = CryptoJS.AES.decrypt(encryptedPassword, secretKey);
-    return bytes.toString(CryptoJS.enc.Utf8);
+    try {
+      return bytes.toString(CryptoJS.enc.Utf8);
+    } catch (error) {
+      console.error('Error decrypting password:', error);
+      return 'Error decrypting password';
+    }
+    //const bytes = CryptoJS.AES.decrypt(encryptedPassword, secretKey);
+    //return bytes.toString(CryptoJS.enc.Utf8);
+   // return bytes.toString(CryptoJS.enc.Utf8);
 }
 }

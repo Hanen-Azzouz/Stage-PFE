@@ -1,0 +1,45 @@
+
+
+<main style="margin-top:auto;">
+
+    <table class="table">
+   <thead >
+     <tr>
+      <!-- <th scope="col">id User</th>style="color: firebrick;"-->
+       <th scope="col"class="custom-th" >Id </th>
+       
+       <th scope="col"class="custom-th"> Name</th>
+       <th scope="col"class="custom-th" colspan="2" style="align-content: center;"> Actions</th>
+     </tr>
+   </thead>
+   <tbody>
+     <ng-container *ngFor=" let i of rolesList | paginate: { itemsPerPage: 3, currentPage: p}; let j = index">
+         <!---- <tr *ngFor=" let i of list">-->
+         <tr>
+                    <td>{{i.idRole}}</td>                   
+                    <td >{{i.roleName}}</td>                    
+   
+                     <td><button type="button" class="btn btn-outline-primary" (click)="update(i.idRole)">update</button></td>            
+                      <td><button type="button" class="btn btn-outline-danger" (click)="delete(i.idRole)">Delete</button></td>
+ 
+         </tr>
+       </ng-container>
+   </tbody>
+ </table>
+ <div class="pagination">
+   <pagination-controls (pageChange)="p = $event"></pagination-controls>
+ </div>
+ 
+ 
+     
+ 
+   <!--fin modal one contrat-->
+    <!--contenu-->
+ 
+ 
+ 
+ 
+ 
+ 
+ <!--content area-->
+ </main>

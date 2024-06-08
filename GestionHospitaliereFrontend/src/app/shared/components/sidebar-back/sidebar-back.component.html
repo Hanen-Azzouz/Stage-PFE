@@ -30,18 +30,18 @@
               <hr class="sidebar-divider">
   
               <!-- Heading -->
-             <!-- <div class="sidebar-heading">
+             <!-- <div class="sidebar-heading">button class="btn btn-light" type="button"
                   Interface
               </div>-->
   
                 <li class="nav-item">
-                <button class="btn btn-light" type="button" data-bs-toggle="collapse"  data-target="#collapseusers" 
+                <a class="nav-link collapsed" data-bs-toggle="collapse"  data-target="#collapseusers" 
                 aria-expanded="true" aria-controls="collapseusers"[attr.aria-expanded]="!isCollapsedusers"
                 (click)="collapseUser.toggle()">
                 <i class="fas fa-fw fa-cog"></i>
 
                 <span><b>Gestion Users</b></span>
-                </button>
+                </a>
              
               <div class="collapse"#collapseUser="ngbCollapse" [(ngbCollapse)]="isCollapsedusers" 
               id="collapseusers" data-parent="#accordionSidebar">
@@ -49,12 +49,19 @@
                     <div #collapseUser="ngbCollapse" [(ngbCollapse)]="isCollapsedusers" id="collapseOne" 
                     class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" >
                         <div class="bg-white py-2 collapse-inner rounded">                                                  
-                                 
+                            <h6 class="collapse-header">Gérer les utilisateurs:</h6>  
                          <a class="collapse-item"  href="#" routerLink="register">Ajouter User</a>
                          <a class="collapse-item"  href="#" routerLink="allUsers">All Users</a>
                          <a class="collapse-item"  href="#" routerLink="updateUser">Modifier User</a>
                                   
                               </div>
+                              <div class="bg-white py-2 collapse-inner rounded">                                                  
+                                <h6 class="collapse-header">Gérer les rôles :</h6>  
+                             <a class="collapse-item"  href="#" routerLink="addRole">Ajouter Rôle</a>
+                             <a class="collapse-item"  href="#" routerLink="allRoles">Tous les Rôles</a>
+                             <a class="collapse-item"  href="#" routerLink="updateRole">Modifier Rôle</a>
+                                      
+                                  </div>
                           </div>
               
               </div>
@@ -62,14 +69,14 @@
         
 
             <li class="nav-item">
-                <button class="btn btn-light" type="button" data-bs-toggle="collapse"  data-target="#collapsemedecins" 
+                <a class="nav-link collapsed" data-bs-toggle="collapse"  data-target="#collapsemedecins" 
                 aria-expanded="true" aria-controls="collapsemedecins"[attr.aria-expanded]="!isCollapsedmedecins"
                 (click)="collapseMedecin.toggle()">
 
                 
                 <i class="fas fa-fw fa-cog"></i>
-            <span><b>Gestion Médecins</b></span>   
-               </button>
+            <span><b>Gestion Patients</b></span>   
+            </a>
              
               <div class="collapse"#collapseMedecin="ngbCollapse" [(ngbCollapse)]="isCollapsedmedecins" 
               id="collapsemedecins" data-parent="#accordionSidebar">

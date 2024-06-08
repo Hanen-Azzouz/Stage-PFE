@@ -1,0 +1,66 @@
+/* Add this CSS to your component's CSS file or global styles.css */
+
+main {
+    background-color: #f8f9fa;
+  }
+  
+  .card {
+    border: none;
+  }
+  
+  .card-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .card-header h6 {
+    font-size: 1rem;
+    color: #6c757d;
+  }
+  
+  .form-control {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    padding: 0.5rem;
+  }
+  
+  .form-control:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .form-select {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    padding: 0.5rem;
+  }
+  
+  .form-select:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+  }
+  
+  .btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+  }
+  
+  .text-center {
+    margin-top: 1rem;
+  }
+  
+  .container {
+    max-width: 800px;
+  }
+  
+  label b {
+    font-weight: 600;
+  }
+  

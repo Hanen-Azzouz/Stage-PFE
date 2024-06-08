@@ -48,6 +48,56 @@ body {
   }
 
 
+  body {
+    background-color: #7dd2eb;
+    
+  }
+  @media (min-width: 1000px) {
+    main {
+      padding-left: 10px;
+    }
+  }
+  
+  
+  
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination .page-item {
+    margin: 0 5px;
+  }
+  
+  .pagination .page-link {
+    color: #000;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination .page-link:hover {
+    background-color: #f4f4f4;
+  }
+  
+  .pagination .page-item.active .page-link {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+  }
+  
+  .pagination .page-item.disabled .page-link {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .custom-th {
+    color: firebrick;/* Change the color to your preferred color */
+  }
+
+
   /* styles.css */
 
 body {
@@ -86,8 +136,8 @@ input[type="date"] {
 }
 
 button {
-  background-color: #17bf98;
-  color: #04010f;
+  background-color: #0d9191;
+  color: #fff;
   border: none;
   padding: 10px 20px;
   border-radius: 3px;
@@ -96,5 +146,5 @@ button {
 }
 
 button:hover {
-  background-color: #17bf98;
+  background-color: #1baebb;
 }

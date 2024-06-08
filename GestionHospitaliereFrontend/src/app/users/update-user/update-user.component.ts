@@ -15,11 +15,16 @@ import { UserService } from 'src/app/shared/services/user.service';
   
 })
 export class UpdateUserComponent implements OnInit{
-  ident!:any;
-  roleAffecte!:RoleModel;
-roleid!:any;
-  user:UserModel=new UserModel();
-  encryptedPassword: string = '...';
+      ident!:any;
+      IdRole!:number;
+      roleAffecte!:RoleModel;
+      roleid!:any;
+      roleNom!:string;
+      user:UserModel=new UserModel();
+
+      encryptedPassword: string = '...';
+      decodedPwd:string='';
+      roles!:RoleModel[];
 
   constructor(private userService:UserService,
     private router:Router,
@@ -33,32 +38,46 @@ ngOnInit(): void {
   this.ident=this.ar.snapshot.params['id'];
   this.userService.getOneUserById(this.ident).subscribe(
     (data)=>{this.user=data;
+      this.IdRole=this.user.role.idRole;
+      this.roleNom=this.user.role.roleName;
+      console.log("roleNom before update is ",this.roleNom);
 /* à vérifier ce code
       this.encryptedPassword=this.authService.decryptData(this.user.password);
-      console.log("password is ",this.user.password);*/
+      
 // Exemple d'utilisation
 const encryptedPassword = this.user.password;
+console.log("password is ",this.user.password);
+
+
+
+
 const secretKey = '3b764a14b47285436cf8ebf16c1738689db9b192b97562b40732789cdd6eb688';
 const decryptedPassword = this.authService.decryptPassword(encryptedPassword, secretKey);
-console.log('Decrypted Password:', decryptedPassword);
+console.log('Decrypted Password:', decryptedPassword);*/
+
     });
 
 
-    
-  
-}
-getRole(){
-  this.roleid=this.roleAffecte;
-  console.log("Id of role from DB is "+this.roleid);
-this.roleService.getRoleById(this.roleid).subscribe(
-  (data:any) => {
+        this.roleService.getAllRoles().subscribe(
+    (data:RoleModel[])=>{this.roles=data;
+      console.log(data);
+    }
 
-    this.roleAffecte=data;
-   
-    //this.user.role=data;
-    console.log("role from DB is "+JSON.stringify(data));
-    this.roleAffecte=data;
-    console.log("role saved to affect before is "+JSON.stringify(this.roleAffecte));
+        );
+        //this.IdRole=this.user.role.idRole;
+      //  console.log("Id of role from DB is "+this.roleAffecte.idRole);
+}
+      getRole(){
+  
+        this.roleService.getRoleById(this.roleid).subscribe(
+          (data:any) => {
+          this.roleAffecte=data;
+        console.log("role saved to affect before is "+JSON.stringify(this.roleAffecte));
+        this.user.role=this.roleAffecte;
+        console.log("role from DB is "+JSON.stringify(data));
+      // this.roleAffecte=data;
+        this.roleNom=this.roleAffecte.roleName;
+        console.log("role saved to affect before is "+JSON.stringify(this.roleAffecte));
 
   }
   
@@ -69,13 +88,13 @@ this.roleService.getRoleById(this.roleid).subscribe(
 
 
 update(data:UserModel){
-
-
+  console.log("user's role  updated is",this.user.role);
+console.log ("role affecte just  before updating", this.roleAffecte);
 
   this.user.role=this.roleAffecte;
 
-  console.log('user updated is',this.user);
-  return this.userService.updateUser(data).subscribe(
+  console.log("user's updated is",this.user);
+  return this.userService.updateUser(this.ident,data).subscribe(
     ()=>{
 
       console.log('user updated');
@@ -85,6 +104,10 @@ update(data:UserModel){
 
   );
   
+}
+cancelUpdate(){
+
+  this.router.navigate(['/users/allUsers']);
 }
 
 
