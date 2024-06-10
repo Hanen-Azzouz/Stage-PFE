@@ -104,7 +104,7 @@ public class AuthenticationService {
             deleteLoggedTokens();
 
             saveUserToken(accessToken, refreshToken, user);
-            return new AuthenticationResponse(accessToken, refreshToken, "User login was successful");
+            return new AuthenticationResponse(accessToken, refreshToken, "User login was successful", user.getRole().getRoleName().toUpperCase());
         }
 
 
