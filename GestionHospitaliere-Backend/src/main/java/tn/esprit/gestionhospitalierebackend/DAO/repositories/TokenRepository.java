@@ -12,13 +12,13 @@ import java.util.Optional;
 public interface TokenRepository extends JpaRepository<Token,Integer> {
     @Query("""
         SELECT t from Token t inner join User u on t.user.idUser =u.idUser
-        where t.user.idUser= :userId and t.loggedOut=false
+        where t.user.idUser= :userId and (t.loggedOut=false)
         """)
     List<Token> findAllAccessTokenByUser(Integer userId);
     Optional<Token> findByAccessToken(String token);
     Optional<Token> findByRefreshToken(String token);
     @Query("""
-        SELECT t from Token t where t.loggedOut=true 
+        SELECT t from Token t where (t.loggedOut=true)
         """)
     List<Token> findAllLoggedAccessTokenByUser();
 

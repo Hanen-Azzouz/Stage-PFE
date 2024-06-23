@@ -8,6 +8,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 
 import java.io.File;
 
@@ -15,6 +16,8 @@ import java.io.File;
 public class EmailSenderService {
     @Autowired
     private JavaMailSender mailSender;
+    @Autowired
+    private SpringTemplateEngine templateEngine;
 
     public  void sendSimpleEmail(String toEmail,String body,String subject){
         SimpleMailMessage message=new SimpleMailMessage();
@@ -29,7 +32,8 @@ public class EmailSenderService {
 
     public void sendEmailWithAttachment(String toEmail,String body,String subject,String attachment) throws MessagingException {
         MimeMessage mimeMessage=mailSender.createMimeMessage();
-        MimeMessageHelper mimeMessageHelper=new MimeMessageHelper(mimeMessage,true);
+        MimeMessageHelper mimeMessageHelper=new MimeMessageHelper(mimeMessage,
+                true);
         mimeMessageHelper.setFrom("haneneazzouz2023@gmail.com");
         mimeMessageHelper.setTo(toEmail);
         mimeMessageHelper.setText(body);

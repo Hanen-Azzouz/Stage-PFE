@@ -31,6 +31,9 @@ public class User implements UserDetails {
     String password;
     int phoneNumber;
     String email;
+    @Temporal(TemporalType.DATE)
+    Date dateUpdatePWD;
+    boolean expiredPWD;
 
     @Temporal(TemporalType.DATE)
     Date dateNaissance;

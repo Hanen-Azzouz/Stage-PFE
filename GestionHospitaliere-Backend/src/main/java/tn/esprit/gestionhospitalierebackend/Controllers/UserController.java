@@ -7,8 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.gestionhospitalierebackend.DAO.entities.User;
+import tn.esprit.gestionhospitalierebackend.Services.implementation.ChangePasswordRequest;
 import tn.esprit.gestionhospitalierebackend.Services.interfaces.IUserService;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +34,7 @@ public class UserController {
     }
 
     @PutMapping(value ="/updateUser/{idUser}",consumes = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasAuthority('ADMIN')")
+   @PreAuthorize("hasAuthority('ADMIN')")
     User updateUser(@PathVariable Integer idUser,@RequestBody User user){
         return userRest.updateUser(idUser,user);
     }
@@ -88,7 +90,7 @@ public class UserController {
         return userRest.searchActifUsers(status);
     }
     @GetMapping("/getUserByUsername/{username}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     public User searchUserByUsername(@PathVariable String username) {
         return userRest.searchUserByUsername(username) ;
     }
@@ -98,6 +100,19 @@ public class UserController {
    public List<User> getUserByDateInscriptionBetween(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date1, @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date date2){
 
         return userRest.getUserByDateInscriptionBetween(date1,date2);
+   }
+   @PatchMapping("/changePwd")
+   public ResponseEntity<?> changePassword(
+           @RequestBody ChangePasswordRequest request,
+           Principal connectedUser){
+        userRest.changePassword(request,connectedUser);
+        return ResponseEntity.accepted().build();
+   }
+
+   @GetMapping("/isPWDExpired/{username}")
+   public boolean isPWDExpired(@PathVariable String username){
+        return userRest.isPasswordExpired(username);
+
    }
 
 }

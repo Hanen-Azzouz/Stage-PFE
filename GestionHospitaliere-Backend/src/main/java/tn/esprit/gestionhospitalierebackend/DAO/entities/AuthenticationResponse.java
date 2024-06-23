@@ -8,7 +8,8 @@ public class AuthenticationResponse {
     private String accessToken;
     @JsonProperty("refresh_token")
     private String refreshToken;
-    String message;
+     String message;
+    private String role;
 
 
     public AuthenticationResponse(String accessToken, String refreshToken, String message) {
@@ -17,6 +18,16 @@ public class AuthenticationResponse {
         this.message = message;
 
     }
+    public AuthenticationResponse(String accessToken, String refreshToken, String message,String role) {
+        this.accessToken = accessToken;
+        this.refreshToken = refreshToken;
+        this.message = message;
+        this.role = role;
+
+    }
+
+
+
 
     public String getMessage() {
         return message;
@@ -30,5 +41,13 @@ public class AuthenticationResponse {
 
     public String getRefreshToken() {
         return refreshToken;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
