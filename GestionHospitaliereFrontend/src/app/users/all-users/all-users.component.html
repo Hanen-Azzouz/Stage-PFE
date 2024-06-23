@@ -17,7 +17,10 @@
   
       <div class="col-sm-6 d-flex">
         <input class="form-control me-2" [(ngModel)]="usernameToSearch" type="text" placeholder="Enter username">
-        <button type="submit" class="btn btn-info" (click)="onSearch()">Get User</button>
+        <button type="submit" class="search-button" (click)="onSearch()">
+          <img src="./assets/dashboard/img/search_image.jpg" alt="Search" class="search-icon">
+          
+         </button>
       </div>
     </div></div>
   
@@ -126,8 +129,8 @@
             </button></td>
   
            <td><button type="button" class="btn btn-outline-primary" (click)="update(i.idUser)">Modifier</button></td> 
-           <td><button type="button" class="btn btn-outline-primary" (click)="lockUserAccount(i.username)">Activer </button></td>
-           <td><button type="button" class="btn btn-outline-primary" (click)="UnlockUserAccount(i.username)">Désactiver</button></td>  
+           <td><button type="button" class="btn btn-outline-primary" (click)="lockUserAccount(i.username)">Bloquer </button></td>
+           <td><button type="button" class="btn btn-outline-primary" (click)="UnlockUserAccount(i.username)">Débloquer</button></td>  
             <td><button type="button" class="btn btn-outline-danger" (click)="delete(i.idUser)">Supprimer</button>
           </td>
 

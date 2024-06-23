@@ -1,41 +1,56 @@
-import { HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 import { AuthenticationService } from '../authentication.service';
+import { UserService } from '../user.service';
 
 
 /*@Injectable({
   providedIn: 'root'
 })*/
-export class MyInterceptorService implements HttpInterceptor{
- 
+export class MyInterceptorService implements HttpInterceptor{ 
   constructor() { }
 
 intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
  //debugger;
- /*An example of interceptor
-  console.log('My interceptor called');
- const modifiedReq=req.clone({headers:req.headers.append('auth','abcxyz')})
-  return next.handle(modifiedReq).pipe(tap((event)=>{
-    if (event.type===HttpEventType.Response){
-      console.log('Respose has arrived. Response Data: ');
-      console.log(event.body);
-    }
+ /*
+const token = localStorage.getItem('loginToken')?.replace(/"/g, '');  
+  const authReq=req.clone({
+  setHeaders:{
+  Authorization:`Bearer ${token}`
+  }
 
+  });
+  return next.handle(authReq);
 
-  }));*/
+  */
 
   const token = localStorage.getItem('loginToken')?.replace(/"/g, '');
+  if (token != null && token != undefined) {
+    const authReq = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return next.handle(authReq)
+    
+    /*.pipe(
+      catchError((error: HttpErrorResponse)=>{
+        if(error.status===401){
+            const isRefresh= confirm("Your session is expired do you want to continue?")
+              if(isRefresh){
 
-const authReq=req.clone({
-setHeaders:{
-  Authorization:`Bearer ${token}`
-}
+              this.userService.$refreshToken.next(true);
+              }
+        
+          }
+        return throwError(error)
+      })
+      );*/
+  }
+  return next.handle(req);
 
-});
-return next.handle(authReq);
-}
-
+  }
 
 
 

@@ -15,7 +15,4 @@ export class UserModel {
     accountNonLocked!:boolean
     role!:RoleModel
     tokens!:TokenModel[]
-
-   
-    
-   }
+    }

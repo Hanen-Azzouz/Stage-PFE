@@ -1,59 +1,102 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+/* Existing Styles */
+.bg-light-green {
+  background-color: #e6ffe6; /* Light green background */
+  border-radius: 10px 10px 0 0;
+  padding: 15px;
 }
 
-.input-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+.card {
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.form-group {
-    flex: 1 1 200px;
-    display: flex;
-    flex-direction: column;
+.card-header {
+  border-bottom: 2px solid #4CAF50;
+  border-radius: 15px 15px 0 0;
+  padding: 20px;
 }
 
-label {
-    margin-bottom: 5px;
+.card-body {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 0 0 15px 15px;
 }
 
-input, select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    width: 100%;
+.form-control, .form-select {
+  border: 1px solid #ced4da;
+  border-radius: 25px;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  padding: 10px 15px;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
 }
 
 .success-button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-    margin-right: 10px;
-}
-
-.success-button:hover {
-    background-color: #218838;
+  background-color: #45a049;
+  border-color: #45a049;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  border-radius: 25px;
+  padding: 10px 20px;
+  margin-right: 10px;
 }
 
 .cancel-button {
-    background-color: #b0b0b0;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+  background-color: #ee4b49;
+  border-color: #760f08;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  border-radius: 25px;
+  padding: 10px 20px;
+  margin-left: 10px;
 }
 
-.cancel-button:hover {
-    background-color: #a0a0a0;
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+.ls-1 {
+  letter-spacing: 1px;
+}
+
+.text-center {
+  margin-top: 20px;
+}
+
+/* New Styles for Labels */
+.label-button {
+  display: inline-block;
+  width: 100%; /* Ensure the label takes the full width of the column */
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #09b780;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.label-button:hover {
+  background-color: #39d97c;
+  transform: scale(1.05);
+}
+
+.label-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Ensure the container takes the full width of the column */
+}
+
+.label-container .label-button {
+  width: 100%; /* Ensure the label takes the full width of the container */
 }

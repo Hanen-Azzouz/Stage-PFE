@@ -1,18 +1,16 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserModel } from '../models/userModel';
+import { Observable, Subject } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  
-  constructor(private http :HttpClient) { }
-
-
-
-
+ // public $refreshToken=new Subject<boolean>;
+ 
+  constructor(private http :HttpClient) {}
 
 
   registerUser(user:UserModel){
@@ -23,6 +21,10 @@ export class UserService {
 
     loginUser(user:UserModel){
       return this.http.post("http://localhost:8082/hospital/auth/login",user);}
+
+      refreshToken(obj:any){
+        return this.http.post<any>("http://localhost:8082/hospital/auth/refresh_token",obj)
+      }
 
     getAllUsers(){
       return this.http.get<UserModel[]>("http://localhost:8082/hospital/user/getAllUsers");
@@ -58,7 +60,15 @@ export class UserService {
     getUserByDateInscriptionBetween(date1:Date,date2:Date){
       return this.http.get<UserModel[]>("http://localhost:8082/hospital/user/getUserByDateInscriptionBetween/"+date1+"/"+date2);
     }
+    changePwd(currentPassword:string,newPassword:string,confirmationPassword:string):Observable<any>{
+      const body= { currentPassword, newPassword,confirmationPassword };
 
+      return this.http.patch<any>("http://localhost:8082/hospital/user/changePwd",body)
+    }
+    getPWDExpired(username:string){
+
+      return this.http.get<boolean>("http://localhost:8082/hospital/user/isPWDExpired/"+username)
+    }
 
 
 

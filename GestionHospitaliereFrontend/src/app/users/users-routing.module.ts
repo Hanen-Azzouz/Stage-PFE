@@ -9,6 +9,7 @@ import { UpdateUserComponent } from './update-user/update-user.component';
 import { AddRoleComponent } from './add-role/add-role.component';
 import { AllRolesComponent } from './all-roles/all-roles.component';
 import { UpdateRoleComponent } from './update-role/update-role.component';
+import { ChangePWDComponent } from './change-pwd/change-pwd.component';
 
 //const routes: Routes = [{ path: '', component: UsersComponent }];//path: '', component: UsersComponent
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
     {path: 'addRole',component:AddRoleComponent},
     {path: 'allRoles',component:AllRolesComponent},
     {path:'updateRole/:id',component:UpdateRoleComponent},
+    {path:'updatePWD',component:ChangePWDComponent},
     
  ]
 

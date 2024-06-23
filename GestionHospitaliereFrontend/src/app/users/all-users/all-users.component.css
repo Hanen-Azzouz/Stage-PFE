@@ -86,15 +86,34 @@ input[type="date"] {
 }
 
 button {
-  background-color: #17bf98;
-  color: #04010f;
+  background-color: #09b780;
   border: none;
-  padding: 10px 20px;
-  border-radius: 3px;
+  color: white;
+  border-radius: 25px;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background-color: #17bf98;
+  background-color: #39d97c;
+  transform: scale(1.05);
+}
+
+
+.search-button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.search-icon {
+  width: 30px;  /* Adjust the size as needed */
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+
+.search-button:hover .search-icon {
+  transform: scale(1.1);
 }

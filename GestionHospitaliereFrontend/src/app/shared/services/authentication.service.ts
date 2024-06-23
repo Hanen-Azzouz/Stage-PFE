@@ -38,12 +38,20 @@ export class AuthenticationService {
 
 
   }
+  setToken(token:string){
+    localStorage.setItem('loginToken',token);
+  }
+
+  getTheToken(){
+    return localStorage.getItem('loginToken')as string;
+  }
+
   getToken(): string | null {
     return this.token || localStorage.getItem('loginToken');
   }
   
 
-   decryptPassword(encryptedPassword:string, secretKey:string) {
+   /*decryptPassword(encryptedPassword:string, secretKey:string) {
     const bytes = CryptoJS.AES.decrypt(encryptedPassword, secretKey);
     try {
       return bytes.toString(CryptoJS.enc.Utf8);
@@ -54,5 +62,17 @@ export class AuthenticationService {
     //const bytes = CryptoJS.AES.decrypt(encryptedPassword, secretKey);
     //return bytes.toString(CryptoJS.enc.Utf8);
    // return bytes.toString(CryptoJS.enc.Utf8);
+}*/
+
+logout(token:any){
+  return this.http.post<any>("http://localhost:8082/hospital/auth/logout",token);
 }
+
+
+alertIncorrectAuthentication(username:string){
+
+  return this.http.get("http://localhost:8082/hospital/auth/incorrectAuthentication/"+username)
+}
+
+
 }

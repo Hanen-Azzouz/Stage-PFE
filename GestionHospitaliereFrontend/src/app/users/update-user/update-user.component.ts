@@ -77,7 +77,7 @@ console.log('Decrypted Password:', decryptedPassword);*/
         console.log("role from DB is "+JSON.stringify(data));
       // this.roleAffecte=data;
         this.roleNom=this.roleAffecte.roleName;
-        console.log("role saved to affect before is "+JSON.stringify(this.roleAffecte));
+        console.log("role saved to affect before is "+JSON.stringify(this.user.role.roleName));
 
   }
   
@@ -94,7 +94,7 @@ console.log ("role affecte just  before updating", this.roleAffecte);
   this.user.role=this.roleAffecte;
 
   console.log("user's updated is",this.user);
-  return this.userService.updateUser(this.ident,data).subscribe(
+  return this.userService.updateUser(this.ident,this.user).subscribe(
     ()=>{
 
       console.log('user updated');

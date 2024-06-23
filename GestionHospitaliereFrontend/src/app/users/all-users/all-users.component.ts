@@ -24,6 +24,7 @@ constructor(private userService:UserService,private router:Router,private cdr: C
 
 
 ngOnInit(): void {
+  
   this.getAllUsers();
  
 }
@@ -36,6 +37,7 @@ ngOnInit(): void {
       (data: UserModel[])=>{(this.usersList=data);
         const endTime = performance.now();
           console.log(`getAllUsers completed in ${endTime - startTime} ms`);
+         // window.location.reload();
       }
       
       
@@ -84,7 +86,7 @@ ngOnInit(): void {
               console.log(response.message);               
 
               this.router.navigate(['/users/allUsers']);
-              window.location.reload();
+             // window.location.reload();
       },
       error => {
         console.error('Error unlocking user:', error);

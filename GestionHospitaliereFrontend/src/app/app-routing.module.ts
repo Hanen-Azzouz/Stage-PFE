@@ -4,7 +4,8 @@ import { LoginComponent } from './shared/components/login/login.component';
 
 const routes: Routes = [
 
-  {path: '', component: LoginComponent},
+  {path:'',redirectTo:'login',pathMatch:'full'},
+  {path: 'login', component: LoginComponent},
   {path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) }];
 
 @NgModule({

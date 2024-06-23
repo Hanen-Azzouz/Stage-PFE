@@ -1,80 +1,102 @@
-
-<main style="margin-top:50px;">
- 
-  <body>
-      <div class="col-xl-8 margin-top">
-          <div class="card shadow card shadow-lg p-3 mb-5 bg-white rounded" style="width: 50rem; margin-left: 200px;">
-              <div class="card-header bg-transparent">
+<main style="margin-top: 50px;">
+  <div class="container">
+      <div class="col-xl-8 mx-auto mt-4">
+          <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+              <div class="card-header bg-transparent bg-light-green">
                   <div class="row align-items-center">
                       <div class="col">
                           <h6 class="text-uppercase text-muted ls-1 mb-1">Modifier Utilisateur</h6>
                       </div>
                   </div>
               </div>
-  
-              <div class="card-body margin-top">
-                  <div class="container pt-2">
+              <div class="card-body mt-3">
+                  <div class="container pt-4">
                       <form #f1="ngForm">
-                          <div class="input-container">
-                              <div class="form-group">
-                                  <label><b>Id Utilisateur</b></label>
-                                  <input type="number" class="form-control" name="idUser" #Iu="ngModel" required [(ngModel)]="user.idUser" disabled>
+                          <div class="form-group">
+                              <div class="row mb-3">
+                                  <div class="col-md-4">
+                                      <label for="idUser" class="label-button"><b>Id Utilisateur</b></label>
+                                  </div>
+                                  <div class="col-md-8">
+                                      <input type="number" id="idUser" class="form-control" name="idUser" #Iu="ngModel" required [(ngModel)]="user.idUser" disabled>
+                                  </div>
                               </div>
-  
-                              <div class="form-group">
-                                  <label><b>Nom Utilisateur</b></label>
-                                  <input type="text" class="form-control" name="lastName" #ln="ngModel" required [(ngModel)]="user.lastName">
+                              <div class="row mb-3">
+                                  <div class="col-md-4">
+                                      <label for="lastname" class="label-button"><b>Nom </b></label>
+                                  </div>
+                                  <div class="col-md-8">
+                                      <input type="text" id="lastname" class="form-control" name="lastName" #ln="ngModel" required [(ngModel)]="user.lastName">
+                                  </div>
                               </div>
-  
-                              <div class="form-group">
-                                  <label><b>Prénom utilisateur</b></label>
-                                  <input type="text" class="form-control" name="firstName" #ln="ngModel" required [(ngModel)]="user.firstName">
+                              <div class="row mb-3">
+                                  <div class="col-md-4">
+                                      <label for="firstname" class="label-button"><b>Prénom </b></label>
+                                  </div>
+                                  <div class="col-md-8">
+                                      <input type="text" id="firstname" class="form-control" name="firstName" #ln="ngModel" required [(ngModel)]="user.firstName">
+                                  </div>
                               </div>
-  
-                              <div class="form-group">
-                                  <label><b>Username</b></label>
-                                  <input type="text" class="form-control" name="username" #us="ngModel" required [(ngModel)]="user.username">
+                              <div class="row mb-3">
+                                  <div class="col-md-4">
+                                      <label for="username" class="label-button"><b>Username</b></label>
+                                  </div>
+                                  <div class="col-md-8">
+                                      <input type="text" id="username" class="form-control" name="username" #us="ngModel" required [(ngModel)]="user.username">
+                                  </div>
                               </div>
-  
-                              <div class="form-group">
-                                  <label><b>Password</b></label>
-                                  <input type="password" class="form-control" name="password" #pwd="ngModel" required [(ngModel)]="user.password">
+                              <div class="row mb-3">
+                                  <div class="col-md-4">
+                                      <label for="password" class="label-button"><b>Mot de passe</b></label>
+                                  </div>
+                                  <div class="col-md-8">
+                                      <input type="password" id="password" class="form-control" name="password" #pwd="ngModel" required [(ngModel)]="user.password">
+                                  </div>
                               </div>
-  
-                              <div class="form-group">
-                                  <label><b>Phone Number</b></label>
-                                  <input type="number" class="form-control" name="phoneNumber" #pn="ngModel" required [(ngModel)]="user.phoneNumber">
+                              <div class="row mb-3">
+                                  <div class="col-md-4">
+                                      <label for="phone" class="label-button"><b>Téléphone</b></label>
+                                  </div>
+                                  <div class="col-md-8">
+                                      <input type="number" id="phone" class="form-control" name="phoneNumber" #pn="ngModel" required [(ngModel)]="user.phoneNumber">
+                                  </div>
                               </div>
-  
-                              <div class="form-group">
-                                  <label><b>Email</b></label>
-                                  <input type="email" class="form-control" name="email" #eml="ngModel" required [(ngModel)]="user.email" placeholder="your email">
+                              <div class="row mb-3">
+                                  <div class="col-md-4">
+                                      <label for="email" class="label-button"><b>Email</b></label>
+                                  </div>
+                                  <div class="col-md-8">
+                                      <input type="email" id="email" class="form-control" name="email" #eml="ngModel" required [(ngModel)]="user.email" placeholder="Your email">
+                                  </div>
                               </div>
-  
-                              <div class="form-group">
-                                  <label><b>Date Naissance</b></label>
-                                  <input type="date" class="form-control datepicker" name="dateNaissance" #dn="ngModel" required [(ngModel)]="user.dateNaissance" placeholder="Date Naissance">
+                              <div class="row mb-3">
+                                  <div class="col-md-4">
+                                      <label for="dateNaissance" class="label-button"><b>Date Naissance</b></label>
+                                  </div>
+                                  <div class="col-md-8">
+                                      <input type="date" id="dateNaissance" class="form-control" name="dateNaissance" #dn="ngModel" required [(ngModel)]="user.dateNaissance">
+                                  </div>
                               </div>
-  
-                              <div class="form-group">
-                                  <label><b>Date Inscription</b></label>
-                                  <input type="date" class="form-control datepicker" name="dateInscription" #di="ngModel" required [(ngModel)]="user.dateInscription" placeholder="Date Inscription">
+                              <div class="row mb-3">
+                                  <div class="col-md-4">
+                                      <label for="dateInscription" class="label-button"><b>Date Inscription</b></label>
+                                  </div>
+                                  <div class="col-md-8">
+                                      <input type="date" id="dateInscription" class="form-control" name="dateInscription" #di="ngModel" required [(ngModel)]="user.dateInscription">
+                                  </div>
                               </div>
-  
-                              <div class="form-group">
-                                  <label><b>Role</b></label>
-                                  <select class="form-select"  #rl="ngModel" required [(ngModel)]="roleid" name="role" (change)="getRole()">
-                                    <option [value]="roleid">{{roleNom}}</option>
-                                    <option *ngFor="let role of roles" [value]="role.idRole">{{ role.roleName }}</option>
-                                
-                                  </select>
+                              <div class="row mb-3">
+                                  <div class="col-md-4">
+                                      <label for="role" class="label-button"><b>Rôle</b></label>
+                                  </div>
+                                  <div class="col-md-8">
+                                      <select class="form-select" id="role" #rl="ngModel" required [(ngModel)]="roleid" name="role" (change)="getRole()">
+                                          <option [value]="roleid">{{roleNom}}</option>
+                                          <option *ngFor="let role of roles" [value]="role.idRole">{{ role.roleName }}</option>
+                                      </select>
+                                  </div>
                               </div>
-
-
-
-
                           </div>
-  
                           <div class="text-center">
                               <button type="button" class="success-button" (click)="update(f1.value)">Confirmer</button>
                               <button type="button" class="cancel-button" (click)="cancelUpdate()">Annuler</button>
@@ -84,9 +106,5 @@
               </div>
           </div>
       </div>
-  </body>
-  
-  
-    
-  
+  </div>
 </main>

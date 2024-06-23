@@ -5,7 +5,7 @@
         <div class="card-header bg-transparent">
           <div class="row align-items-center">
             <div class="col">
-              <h6 class="text-uppercase text-muted ls-1 mb-1">Add New User</h6>
+              <h6 class="text-uppercase text-muted ls-1 mb-1">Ajout utilisateur</h6>
             </div>
           </div>
         </div>
@@ -13,65 +13,65 @@
           <div class="container pt-4">
             <form #f1="ngForm">
               <div class="row mb-3">
-                <label class="col-sm-4 col-form-label"><b>First Name</b></label>
+                <label class="label-button col-sm-4" for="firstname">Prénom</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="firstname" #fn="ngModel" required [(ngModel)]="user.firstName">
+                  <input id="firstname" type="text" class="form-control" name="firstname" #fn="ngModel" required [(ngModel)]="user.firstName">
                 </div>
               </div>
 
               <div class="row mb-3">
-                <label class="col-sm-4 col-form-label"><b>Last Name</b></label>
+                <label class="label-button col-sm-4" for="lastname">Nom</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="lastname" #ln="ngModel" required [(ngModel)]="user.lastName">
+                  <input id="lastname" type="text" class="form-control" name="lastname" #ln="ngModel" required [(ngModel)]="user.lastName">
                 </div>
               </div>
 
               <div class="row mb-3">
-                <label class="col-sm-4 col-form-label"><b>Username</b></label>
+                <label class="label-button col-sm-4" for="username">Username</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="username" #us="ngModel" required [(ngModel)]="user.username">
+                  <input id="username" type="text" class="form-control" name="username" #us="ngModel" required [(ngModel)]="user.username">
                 </div>
               </div>
 
               <div class="row mb-3">
-                <label class="col-sm-4 col-form-label"><b>Password</b></label>
+                <label class="label-button col-sm-4" for="password">Mot de passe</label>
                 <div class="col-sm-8">
-                  <input type="password" class="form-control" name="password" #pwd="ngModel" required [(ngModel)]="user.password">
+                  <input id="password" type="password" class="form-control" name="password" #pwd="ngModel" required [(ngModel)]="user.password">
                 </div>
               </div>
 
               <div class="row mb-3">
-                <label class="col-sm-4 col-form-label"><b>Phone Number</b></label>
+                <label class="label-button col-sm-4" for="phone">Téléphone</label>
                 <div class="col-sm-8">
-                  <input type="number" class="form-control" name="phone" #pn="ngModel" required [(ngModel)]="user.phoneNumber">
+                  <input id="phone" type="number" class="form-control" name="phone" #pn="ngModel" required [(ngModel)]="user.phoneNumber">
                 </div>
               </div>
 
               <div class="row mb-3">
-                <label class="col-sm-4 col-form-label"><b>Email</b></label>
+                <label class="label-button col-sm-4" for="email">Email</label>
                 <div class="col-sm-8">
-                  <input type="email" class="form-control" name="email" #eml="ngModel" required [(ngModel)]="user.email" placeholder="Your email">
+                  <input id="email" type="email" class="form-control" name="email" #eml="ngModel" required [(ngModel)]="user.email" placeholder="Your email">
                 </div>
               </div>
 
               <div class="row mb-3">
-                <label class="col-sm-4 col-form-label"><b>Date of Birth</b></label>
+                <label class="label-button col-sm-4" for="dateNaissance">Date Naissance</label>
                 <div class="col-sm-8">
-                  <input type="date" class="form-control" name="dateNaissance" #dn="ngModel" required [(ngModel)]="user.dateNaissance" placeholder="Date of Birth">
+                  <input id="dateNaissance" type="date" class="form-control" name="dateNaissance" #dn="ngModel" required [(ngModel)]="user.dateNaissance" placeholder="Date of Birth">
                 </div>
               </div>
 
               <div class="row mb-3">
-                <label class="col-sm-4 col-form-label"><b>Registration Date</b></label>
+                <label class="label-button col-sm-4" for="dateInscription">Date Inscription</label>
                 <div class="col-sm-8">
-                  <input type="date" class="form-control" name="dateInscription" #di="ngModel" required [(ngModel)]="user.dateInscription" placeholder="Registration Date">
+                  <input id="dateInscription" type="date" class="form-control" name="dateInscription" #di="ngModel" required [(ngModel)]="user.dateInscription" placeholder="Registration Date">
                 </div>
               </div>
 
               <div class="row mb-3">
-                <label class="col-sm-4 col-form-label"><b>Role</b></label>
+                <label class="label-button col-sm-4" for="role">Rôle</label>
                 <div class="col-sm-8">
-                  <select class="form-select" #rl="ngModel" required [(ngModel)]="roleAffecte" name="role" (change)="getRole()">
+                  <select id="role" class="form-select" #rl="ngModel" required [(ngModel)]="roleAffecte" name="role" (change)="getRole()">
                     <option selected value="1">ADMIN</option>
                     <option value="2">Medecin</option>
                     <option value="3">Infirmier</option>

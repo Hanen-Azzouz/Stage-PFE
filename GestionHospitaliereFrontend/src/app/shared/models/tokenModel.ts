@@ -5,6 +5,7 @@ export class TokenModel {
     accessToken!:string
     refreshToken!:string
     loggedOut!:boolean
+    expired!:boolean
     user!:UserModel
 
 

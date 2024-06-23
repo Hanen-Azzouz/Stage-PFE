@@ -13,6 +13,7 @@ import { UpdateUserComponent } from './update-user/update-user.component';
 import { AddRoleComponent } from './add-role/add-role.component';
 import { AllRolesComponent } from './all-roles/all-roles.component';
 import { UpdateRoleComponent } from './update-role/update-role.component';
+import { ChangePWDComponent } from './change-pwd/change-pwd.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { UpdateRoleComponent } from './update-role/update-role.component';
     UpdateUserComponent,
     AddRoleComponent,
     AllRolesComponent,
-    UpdateRoleComponent
+    UpdateRoleComponent,
+    ChangePWDComponent
   ],
   imports: [
     CommonModule,
@@ -32,6 +34,7 @@ import { UpdateRoleComponent } from './update-role/update-role.component';
     FormsModule,
     NgxPaginationModule,
     NgbModule,
+    
    
   ]
 })

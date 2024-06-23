@@ -1,179 +1,210 @@
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
-            
-            <!--  gradient-primary-->
-  
-            
-              <!-- Sidebar - Brand -->
-              <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                  <div class="sidebar-brand-icon rotate-n-15">
-                      <!--<i class="fas fa-laugh-wink"></i>-->
-                  </div>
-                  <div class="sidebar-brand-text mx-3">MediSys</div>
-              </a>
-              <!-- Divider -->
-              <hr class="sidebar-divider my-0">
-  
-              <!-- Nav Item - Dashboard -->
-              <li class="nav-item active">
-  
-                  <a class="navbar-brand text-brand" routerLink="/"><span class="color-b">Welcome </span>
-        <span class="text-white bg-dark" >Admin  </span></a>
-                 <!-- <a class="nav-link" href="index.html">
-                      
-                      <i class="fas fa-fw fa-tachometer-alt"></i>
-                      <span>{{administrateur.nom}}  {{administrateur.prenom}}</span></a>-->
-              </li>
-  
-              <!-- Divider -->
-              <hr class="sidebar-divider">
-  
-              <!-- Heading -->
-             <!-- <div class="sidebar-heading">button class="btn btn-light" type="button"
-                  Interface
-              </div>-->
-  
-                <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-toggle="collapse"  data-target="#collapseusers" 
-                aria-expanded="true" aria-controls="collapseusers"[attr.aria-expanded]="!isCollapsedusers"
-                (click)="collapseUser.toggle()">
-                <i class="fas fa-fw fa-cog"></i>
 
-                <span><b>Gestion Users</b></span>
-                </a>
-             
-              <div class="collapse"#collapseUser="ngbCollapse" [(ngbCollapse)]="isCollapsedusers" 
-              id="collapseusers" data-parent="#accordionSidebar">
-                
-                    <div #collapseUser="ngbCollapse" [(ngbCollapse)]="isCollapsedusers" id="collapseOne" 
-                    class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" >
-                        <div class="bg-white py-2 collapse-inner rounded">                                                  
-                            <h6 class="collapse-header">Gérer les utilisateurs:</h6>  
-                         <a class="collapse-item"  href="#" routerLink="register">Ajouter User</a>
-                         <a class="collapse-item"  href="#" routerLink="allUsers">All Users</a>
-                         <a class="collapse-item"  href="#" routerLink="updateUser">Modifier User</a>
-                                  
-                              </div>
-                              <div class="bg-white py-2 collapse-inner rounded">                                                  
-                                <h6 class="collapse-header">Gérer les rôles :</h6>  
-                             <a class="collapse-item"  href="#" routerLink="addRole">Ajouter Rôle</a>
-                             <a class="collapse-item"  href="#" routerLink="allRoles">Tous les Rôles</a>
-                             <a class="collapse-item"  href="#" routerLink="updateRole">Modifier Rôle</a>
-                                      
-                                  </div>
-                          </div>
+
+
+<!-- Sidebar -->
+<ul class="navbar-nav bg-dark sidebar sidebar-dark accordion"
+ id="accordionSidebar">
+            
+    <!--  gradient-primary-->
+
+    
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+          <div class="sidebar-brand-icon rotate-n-15">
+              <!--<i class="fas fa-laugh-wink"></i>-->
+          </div>
+          <div class="sidebar-brand-text mx-3">MediSys</div>
+      </a>
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+
+          <a class="navbar-brand text-brand" routerLink="/"><span class="color-b">Welcome </span>
+<span class="color-b" >Admin  </span></a>
+         <!-- <a class="nav-link" href="index.html">
               
-              </div>
-            </li>
+              <i class="fas fa-fw fa-tachometer-alt"></i>
+              <span>{{administrateur.nom}}  {{administrateur.prenom}}</span></a>-->
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+     <!-- <div class="sidebar-heading">button class="btn btn-light" type="button"
+          Interface
+      </div>-->
+
+        <li *ngIf="isAdmin()" class="nav-item">
+        <a class="nav-link collapsed" 
+        data-bs-toggle="collapse"  
+        data-target="#collapseusers" 
+        aria-expanded="true" 
+        aria-controls="collapseusers"
+        [attr.aria-expanded]="!isCollapsedusers"
+        (click)="collapseUser.toggle()">
+       <!--<i class="fas fa-fw fa-cog"></i>-->
+        <i class="fas fa-users"></i>
+        <span><b>Gestion Users</b></span>
+        </a>
+     
+      <div class="collapse"#collapseUser="ngbCollapse" [(ngbCollapse)]="isCollapsedusers" 
+      id="collapseusers" data-parent="#accordionSidebar">
         
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-toggle="collapse"  data-target="#collapsemedecins" 
-                aria-expanded="true" aria-controls="collapsemedecins"[attr.aria-expanded]="!isCollapsedmedecins"
-                (click)="collapseMedecin.toggle()">
-
+            <div #collapseUser="ngbCollapse" [(ngbCollapse)]="isCollapsedusers" id="collapseOne" 
+            class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" >
                 
-                <i class="fas fa-fw fa-cog"></i>
-            <span><b>Gestion Patients</b></span>   
-            </a>
-             
-              <div class="collapse"#collapseMedecin="ngbCollapse" [(ngbCollapse)]="isCollapsedmedecins" 
-              id="collapsemedecins" data-parent="#accordionSidebar">
-                
-                    <div #collapseMedecin="ngbCollapse" [(ngbCollapse)]="isCollapsedmedecins" id="collapseTwo" 
-                    class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" >
-                        <div class="bg-white py-2 collapse-inner rounded">                                                  
-                                 
-                         <a class="collapse-item"  href="#" routerLink="#">Ajouter Médecin</a>
-                         <a class="collapse-item"  href="#" routerLink="allContrats">All Médecins</a>
-                         <a class="collapse-item"  href="#" routerLink="renouvelerContrat">Modifier Médecin</a>
-                                  
-                              </div>
+            
+            
+            <!--<div class="bg-white py-2 collapse-inner rounded">                                                  
+                    <h6 class="collapse-header">Gérer les utilisateurs:</h6>  
+                 <a class="collapse-item"  href="#" routerLink="register">Ajouter User</a>
+                 <a class="collapse-item"  href="#" routerLink="allUsers">All Users</a>
+                 <a class="collapse-item"  href="#" routerLink="updateUser">Modifier User</a>
+                          
+                      </div>-->
+                      <div class="bg-light-green py-2 collapse-inner rounded shadow">
+                        <h6 class="collapse-header">Gérer les utilisateurs:</h6>
+                        <a class="collapse-item stylish-link" href="#" routerLink="register">Ajouter Utilisateur</a>
+                        <a class="collapse-item stylish-link" href="#" routerLink="allUsers">Tous les Utilisateurs</a>
+                       
+                      </div>
+                      
+
+
+
+
+
+                      <div class="bg-light-green  py-2 collapse-inner rounded">                                                  
+                        <h6 class="collapse-header">Gérer les rôles :</h6>  
+                     <a class="collapse-item stylish-link"  href="#" routerLink="addRole">Ajouter Rôle</a>
+                     <a class="collapse-item stylish-link" href="#" routerLink="allRoles">Tous les Rôles</a>
+                     <a class="collapse-item stylish-link" href="#" routerLink="updateRole">Modifier Rôle</a>
+                              
                           </div>
-              
-              </div>
-            </li>
-                
+                  </div>
+      
+      </div>
+    </li>
 
-  
-            <!-- Divider -->
-              <hr class="sidebar-divider">
-  
-              <!-- Heading -->
-              <div class="sidebar-heading">
-                  Addons
-              </div>
-  
-              <!-- Nav Item - Pages Collapse Menu -->
-              <li class="nav-item">          
-               <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"  data-target="#collapsePages"
-                  aria-expanded="true" aria-controls="collapseUtilities" >
-                      <i class="fas fa-fw fa-folder"></i>
-                      <span>Pages</span>
-                  </a>
-                  <div class="collapse"  id="collapsePages"  aria-labelledby="headingUtilities"
-          data-parent="#accordionSidebar">
-                 <!-- <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">-->
-                      <div class="bg-white py-2 collapse-inner rounded">
-                          <h6 class="collapse-header">Login Screens:</h6>
-                          <a class="collapse-item" href="login.html">Login</a>
-                          <a class="collapse-item" href="register.html">Register</a>
-                          <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                          <div class="collapse-divider"></div>
-                          <h6 class="collapse-header">Other Pages:</h6>
-                          <a class="collapse-item" href="404.html">404 Page</a>
-                          <a class="collapse-item" href="blank.html">Blank Page</a>
+
+    <li *ngIf="isAdmissions()" class="nav-item">
+
+        <a class="nav-link collapsed" 
+        data-bs-toggle="collapse"  
+        data-target="#collapsemedecins" 
+        aria-expanded="true" 
+        aria-controls="collapsemedecins"
+        [attr.aria-expanded]="!isCollapsedmedecins"
+        (click)="collapseMedecin.toggle()">
+
+        
+      <!--  <i class="fas fa-user-md"></i>-->
+        <i class="fas fa-user-injured"></i>
+    <span><b>Gestion Patients</b></span>   
+    </a>
+     
+      <div class="collapse"#collapseMedecin="ngbCollapse" [(ngbCollapse)]="isCollapsedmedecins" 
+      id="collapsemedecins" data-parent="#accordionSidebar">
+        
+            <div #collapseMedecin="ngbCollapse" [(ngbCollapse)]="isCollapsedmedecins" id="collapseTwo" 
+            class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" >
+                <div class="bg-white py-2 collapse-inner rounded">                                                  
+                         
+                 <a class="collapse-item stylish-link"  href="#" routerLink="#">Ajouter Patient</a>
+                 <a class="collapse-item stylish-link"  href="#" routerLink="allContrats">Tous les Patients</a>
+                 <a *ngIf="isAdmin()"class="collapse-item stylish-link"  href="#" routerLink="renouvelerContrat">Modifier Patient</a>
+                          
                       </div>
                   </div>
-              </li>
-  
-  
-              <!-- Nav Item - Charts -->
-              <li class="nav-item">
-                                
-                          <a class="nav-link collapsed"  href="#" routerLink="mycharts" data-bs-toggle="collapse"  data-target="#collapsecharts"
-                             aria-expanded="true" aria-controls="collapseUtilities" >
-                             <i class="fas fa-fw fa-chart-area"></i>
-                             <span>Charts</span></a>
-                             <div class="collapse" id="collapsecharts"  aria-labelledby="headingUtilities"
-                     data-parent="#accordionSidebar">
-                            <!-- <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">-->
-                              <!--   <div class="bg-white py-2 collapse-inner rounded">
-                                     
-                                     
-                                     
-                                     
-                                 </div>-->
-                             </div>
-                         </li>
-  
-              
-              
-  
-              <!-- Nav Item - Tables -->
-              <li class="nav-item">
-                  <a class="nav-link" href="{#}">
-                      <i class="fas fa-fw fa-table"></i>
-                      <span>Tables</span></a>
-              </li>
-  
-              <!-- Divider -->
-              <hr class="sidebar-divider d-none d-md-block">
-  
-              <!-- Sidebar Toggler (Sidebar) -->
-              <div class="text-center d-none d-md-inline">
-                  <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      
+      </div>
+    </li>
+        
+
+
+    <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+          Addons
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">          
+       <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"  data-target="#collapsePages"
+          aria-expanded="true" aria-controls="collapseUtilities" >
+              <i class="fas fa-fw fa-folder"></i>
+              <span>Pages</span>
+          </a>
+          <div class="collapse"  id="collapsePages"  aria-labelledby="headingUtilities"
+  data-parent="#accordionSidebar">
+         <!-- <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">-->
+              <div class="bg-white py-2 collapse-inner rounded">
+                  <h6 class="collapse-header">Login Screens:</h6>
+                  <a class="collapse-item" href="login.html">Login</a>
+                  <a class="collapse-item" href="register.html">Register</a>
+                  <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                  <div class="collapse-divider"></div>
+                  <h6 class="collapse-header">Other Pages:</h6>
+                  <a class="collapse-item" href="404.html">404 Page</a>
+                  <a class="collapse-item" href="blank.html">Blank Page</a>
               </div>
-  
-              <!-- Sidebar Message -->
-              <div class="sidebar-card d-none d-lg-flex">
-                  
-                  <p class="text-center mb-2"><strong>MediSys</strong> </p>
-                  <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
-              </div>
-  
-  
-              
-          </ul>
-          <!-- End of Sidebar -->
+          </div>
+      </li>
+
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+                        
+                  <a class="nav-link collapsed"  href="#" routerLink="mycharts" data-bs-toggle="collapse"  data-target="#collapsecharts"
+                     aria-expanded="true" aria-controls="collapseUtilities" >
+                     <i class="fas fa-fw fa-chart-area"></i>
+                     <span>Charts</span></a>
+                     <div class="collapse" id="collapsecharts"  aria-labelledby="headingUtilities"
+             data-parent="#accordionSidebar">
+                    <!-- <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">-->
+                      <!--   <div class="bg-white py-2 collapse-inner rounded">
+                             
+                             
+                             
+                             
+                         </div>-->
+                     </div>
+                 </li>
+
+      
+      
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+          <a class="nav-link" href="{#}">
+              <i class="fas fa-fw fa-table"></i>
+              <span>Tables</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+      <!-- Sidebar Message -->
+      <div class="sidebar-card d-none d-lg-flex">
+          
+          <p class="text-center mb-2"><strong>MediSys</strong> </p>
+          <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+      </div>
+
+
+      
+  </ul>
+  <!-- End of Sidebar -->
+
+
